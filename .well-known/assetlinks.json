@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.appolica.countdown",
+    "sha256_cert_fingerprints": [
+      "A8:3C:E7:B8:F3:C9:B0:D7:F8:BC:85:5F:98:EF:9E:7E:84:BF:00:5A:01:86:9A:5E:D6:00:52:2F:9E:5B:0E:B3"
+    ]
+  }
+}]
