@@ -16,6 +16,7 @@
             const isAndroid = /android/.test(userAgent);
 
             const deepLink = `mycountdown://${path}`;
+            console.log(deepLink);
             window.location.href = deepLink;
 
             setTimeout(() => {
