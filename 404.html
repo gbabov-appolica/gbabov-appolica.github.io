@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Countdown App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        function redirect() {
+            const path = window.location.pathname.split('/').pop();  // Get the base64 string from the URL
+
+            // If there's no path, do nothing
+            if (!path) return;
+
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isIOS = /iphone|ipad|ipod/.test(userAgent);
+            const isAndroid = /android/.test(userAgent);
+
+            const deepLink = `mycountdown://${path}`;
+            window.location.href = deepLink;
+
+            setTimeout(() => {
+                if (isIOS) {
+                    window.location.href = 'https://apps.apple.com/gb/app/holiday-countdowns/id915429488';
+                } else if (isAndroid) {
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.holidayextras.countdown2024&hl=en';
+                }
+            }, 1000);
+        }
+
+        function displayCountdownInfo() {
+            try {
+                const path = window.location.pathname.split('/').pop();  // Get the base64 string from the URL
+                if (!path) return;
+
+                // Decode base64 and parse the JSON data
+                const jsonStr = atob(path);  // Decode base64 to string
+                const data = JSON.parse(jsonStr);  // Parse JSON
+                document.getElementById('countdown-info').innerHTML = `
+                    <h2>${data.title}</h2>
+                    <p>Date: ${new Date(data.timestamp).toLocaleDateString()}</p>
+                `;
+            } catch (e) {
+                console.error('Error displaying countdown:', e);
+            }
+        }
+    </script>
+</head>
+
+<body onload="redirect(); displayCountdownInfo()">
+    <div style="text-align: center; padding: 20px;">
+        <h1>Opening Countdown App...</h1>
+        <div id="countdown-info"></div>
+        <p>If nothing happens, you can download the app here:</p>
+        <p>
+            <a href="https://apps.apple.com/gb/app/holiday-countdowns/id915429488">Download for iOS</a>
+            <br>
+            <a href="https://play.google.com/store/apps/details?id=com.holidayextras.countdown2024&hl=en">Download for
+                Android</a>
+        </p>
+    </div>
+</body>
+
+</html>
